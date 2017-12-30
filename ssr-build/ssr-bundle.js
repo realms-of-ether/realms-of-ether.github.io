@@ -1199,7 +1199,7 @@ var abi = [{
 
 var RealmsOfEtherContract = web3.eth.contract(abi);
 
-var instance = RealmsOfEtherContract.at('0x699d70ab94ba4fd15c0edef58144a9c1a2227ca7');
+var instance = RealmsOfEtherContract.at('0x0716d44d5991b15256A2de5769e1376D569Bba7C');
 
 /* harmony default export */ __webpack_exports__["default"] = (instance);
 
@@ -5490,7 +5490,7 @@ var home__ref = Object(preact_min["h"])(
 		Object(preact_min["h"])('br', null),
 		Object(preact_min["h"])(
 			'a',
-			{ href: '' },
+			{ href: 'https://github.com/realms-of-ether/' },
 			'GitHub'
 		)
 	),
@@ -6142,13 +6142,15 @@ var auction__ref8 = Object(preact_min["h"])('br', null);
 
 var auction__ref9 = Object(preact_min["h"])('br', null);
 
-var auction__ref10 = Object(preact_min["h"])(
+var auction__ref10 = Object(preact_min["h"])('br', null);
+
+var auction__ref11 = Object(preact_min["h"])(
 	'h3',
 	null,
 	'All Auctions'
 );
 
-var auction__ref11 = Object(preact_min["h"])(
+var auction__ref12 = Object(preact_min["h"])(
 	'h3',
 	null,
 	'My Auctions'
@@ -6345,6 +6347,8 @@ var auction_Auction = function (_Component) {
 						{ onClick: this.bid.bind(this, hash) },
 						'Bid'
 					),
+					'Steps in 0.1 ether',
+					auction__ref,
 					'If already bid, it increases your bid'
 				);
 			}
@@ -6367,10 +6371,10 @@ var auction_Auction = function (_Component) {
 					'/',
 					this.state.auctions[hash].y,
 					')',
-					auction__ref,
+					auction__ref2,
 					'Highest bid: ',
 					this.state.auctions[hash].highestBid,
-					auction__ref2,
+					auction__ref3,
 					'End:',
 					auctionEnd.toLocaleDateString("en-US", {
 						year: '2-digit',
@@ -6379,8 +6383,8 @@ var auction_Auction = function (_Component) {
 						hour: '2-digit',
 						minute: '2-digit'
 					}),
-					auction__ref3,
 					auction__ref4,
+					auction__ref5,
 					Object(preact_min["h"])(
 						buttonLink_Button,
 						{ to: '/fortress/' + hash },
@@ -6465,10 +6469,10 @@ var auction_Auction = function (_Component) {
 					'/',
 					this.state.userAuctions[hash].y,
 					')',
-					auction__ref5,
+					auction__ref6,
 					'Highest bid: ',
 					this.state.userAuctions[hash].highestBid,
-					auction__ref6,
+					auction__ref7,
 					'End:',
 					_auctionEnd.toLocaleDateString("en-US", {
 						year: '2-digit',
@@ -6477,8 +6481,8 @@ var auction_Auction = function (_Component) {
 						hour: '2-digit',
 						minute: '2-digit'
 					}),
-					auction__ref7,
 					auction__ref8,
+					auction__ref9,
 					Object(preact_min["h"])(
 						buttonLink_Button,
 						{ to: '/fortress/' + hash },
@@ -6495,11 +6499,11 @@ var auction_Auction = function (_Component) {
 			box_Box,
 			null,
 			'Caution! If you win your own auction, you can reclaim the fortress, but not the ether!',
-			auction__ref9,
-			'There is also a 1% fee!',
 			auction__ref10,
-			auctions,
+			'There is also a 1% fee!',
 			auction__ref11,
+			auctions,
+			auction__ref12,
 			userAuctions
 		);
 	};
@@ -6772,6 +6776,11 @@ var fortress_Fortress = function (_Component) {
 		var buildings = [];
 
 		for (var buildingHash in this.state.buildings) {
+			// In the next contract update -> remove buildings, the following one is somehow broken
+			if (buildingHash === '0x013fe665d081d447d18c02806c23234ff4e64e732fa7a5814abc87a0dac86737') {
+				continue;
+			}
+
 			var _state$buildings$buil = this.state.buildings[buildingHash],
 			    name = _state$buildings$buil.name,
 			    action = _state$buildings$buil.action,
